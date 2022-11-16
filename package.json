@@ -1,0 +1,32 @@
+{
+  "name": "nextjscompletedguide",
+  "version": "1.0.0",
+  "description": "1. user receives empty html with js tag 2. user loads js from js tag(<script>) 3. js runs, starts fetchinh data and creating page 4. data returns, js finishes remdering page complete page with correct html",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tienvv1234/nextjsCompletedGuide.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tienvv1234/nextjsCompletedGuide/issues"
+  },
+  "homepage": "https://github.com/tienvv1234/nextjsCompletedGuide#readme",
+  "dependencies": {
+    "next": "^12.3.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "typescript": "4.9.3"
+  }
+}
