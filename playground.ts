@@ -1,47 +1,41 @@
 interface Person {
     name: string;
+}
+
+interface Student extends Person {
     age: number;
-    city: string;
 }
 
-interface Car {
-    name: string;
+interface PostGraduateStudent extends Student {
+    projects: string[];
 }
 
-type CarOne = {
-    brand: string;
-    age: number;
-    city: string;
-    name: string;
-}
+// type StudentInfo<T extends Student = Student> = {
+//     data: T;
+//     grades: number[];
+// }
 
-// this is default value when we don't pass any value
-class Logger<T extends Person = CarOne> {
-    log(items: Array<T>, callback: (i: T) => void) {
-        items.forEach((item) => {
-            callback(item);
-        });
-    }
-}
-
-class Student implements Person {
-    name = '';
-    age= 0;
-    city = '';
-}
-
-class Teacher implements Person {
-    name = '';
-    age= 0;
-    city = '';
-    salary = 1000;
+interface StudentInfo<T extends Student = Student> {
+    data: T;
+    grades: number[];
 }
 
 export default function play() {
-    // default value is car one
-    const loggerPerson = new Logger();
-    const persons = [{ name: 'John', age: 0, city: '', brand: '' }, { name: 'Jane', age: 0, city: '', brand: '' }];
-    loggerPerson.log(persons, (person: Person) => {
-        console.log(person.name);
-    });
+    
+    function logStudentInfo(info: StudentInfo<PostGraduateStudent>) {
+        console.log(info.data.name);
+        console.log(info.data.age);
+        console.log(info.data.projects);
+    }
+
+    const info = {
+        data: {
+            name: 'John',
+            age: 20,
+            projects: ['Project 1', 'Project 2']
+        },
+        grades: [1, 2, 3]
+    }
+
+    logStudentInfo(info);
 }
