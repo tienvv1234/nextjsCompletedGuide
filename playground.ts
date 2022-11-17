@@ -6,8 +6,17 @@ type CustomArray = {
     [index: number]: string;
 };
 
-export default function play() {
-    const items: CustomArray = ['1', '2', '3'];
+type CustomObject<T = string | number | Person> = {
+    [key: string]: T;
+}
 
-    type Single = CustomArray[number]
+export default function play() {
+    const person: CustomObject = {
+        age: 20,
+        name: "John",
+        surname: "Doe",
+        person: {
+            name: "John"
+        }
+    }
 }
