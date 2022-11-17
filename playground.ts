@@ -1,19 +1,11 @@
 interface Person {
     name: string;
+    age: number;
 }
 
-// this expression T extends () => string
-// this mean T is a function that return string
-// type ReturnType<T> = T extends () => string ? string : number 
-
-// this expression
-// inter keyword will create new (maybe return type or type) type R 
-type ReturnType<T> = T extends () => infer R ? R : number;
-
+type PersonKeys = keyof Person; // 'name' | 'age'
 
 export default function play() {
-    function logger() {
-        return "hello world";
-    }
-    const loggerReturn1: ReturnType<typeof logger> = "hi";
+    const personKey: PersonKeys = 'age';
+    console.log(personKey);
 }
