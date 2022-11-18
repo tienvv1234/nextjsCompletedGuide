@@ -1,17 +1,23 @@
 import { useEffect } from 'react';
-import play from '../playground';
+import type { InferGetStaticPropsType } from 'next';
 
-const HomePage = () => {
-  useEffect(() => {
-    play();
-  }, []);
-  return <div>Welcome to Next.js!</div>;
-};
+export async function getStaticProps() {
+  const products = [1, 2, 3];
+  return {
+    props: {
+      // Will be passed to the page component as props
+      products,
+    },
+    revalidate: 10,
+  };
+}
 
-// HomePage.getInitialProps = async (context) => {
-//   console.log('I am on the server!');
-//   console.log(context.req.url);
-//   return 'server return';
-// };
-
-export default HomePage;
+export default function HomePage({
+  products,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  return (
+    <div>
+      hello world
+    </div>
+  )
+}

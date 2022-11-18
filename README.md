@@ -31,3 +31,8 @@ tsconfig include will compiler all the ts and tsx files
 TS recommend to use Interface over Types when possible
 
 declaration merging only for interface
+
+### nextjs
+nextjs will be using function and getStaticProps, this function will provide me some data through the props, and data will be provided at the  build time
+
+`InferGetStaticPropsType<typeof getStaticProps>` this statement will provide type of props
