@@ -34,7 +34,7 @@ const productConnection = `
         }
     }
 `
-const getAllProductQuery = `
+const getAllProductsQuery = `
 query getAllProducts($first: Int = 250) {
     products(first: $first) {
         ${productConnection}
@@ -42,4 +42,4 @@ query getAllProducts($first: Int = 250) {
 }
 `;
 
-export default getAllProductQuery;
+export default getAllProductsQuery;
