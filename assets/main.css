@@ -1,4 +1,11 @@
+@import "./base.css";
 /* @tailwind is a directive */
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+@layer components {
+    .fit {
+        min-height: calc(100vh - 88px);
+    }
+}
