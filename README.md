@@ -36,3 +36,11 @@ declaration merging only for interface
 nextjs will be using function and getStaticProps, this function will provide me some data through the props, and data will be provided at the  build time
 
 `InferGetStaticPropsType<typeof getStaticProps>` this statement will provide type of props
+
+We using both of tailwindcss and postcss
+
+tailwindcss is forcus on component
+
+postcss is tool for transforming css with javascript
+
+css --> postcss --> parse --> tailwindcss --> plug in2 --> plug in 3 --> stringify --> css
