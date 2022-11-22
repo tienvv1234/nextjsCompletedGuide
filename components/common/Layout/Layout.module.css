@@ -1,5 +1,8 @@
 .root {
-    @apply h-full mx-auto;
+    /* 
+    bg-primary will ref to file tailwind.config.js then object theme.primary
+    */
+    @apply bg-primary h-full mx-auto;
     max-width: 2460px;
     background-color: theme("colors.green");
     color: theme("textColor.base");
