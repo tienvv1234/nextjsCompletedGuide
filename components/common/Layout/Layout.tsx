@@ -4,8 +4,7 @@ import s from './Layout.module.css';
 const Layout = ({ children }: PropsWithChildren) => {
     return (
         <div className={s.root}>
-            <main 
-            style={{color: "var(--primary)"}}
+            <main
             className="fit">
                 {children}
             </main>
