@@ -2,6 +2,7 @@ import type { InferGetStaticPropsType } from 'next';
 import getAllProduct from '@framework/product/get-all-product';
 import { getConfig } from '@framework/api/config';
 import { Layout } from '@components/common'; 
+import { ProductCard } from '@components/product';
 
 export async function getStaticProps() {
   const config = getConfig();
@@ -22,7 +23,9 @@ export default function HomePage({
   console.log('client');
   return (
     <div>
-      {JSON.stringify(products)}
+      {products.slice(0, 3).map((product) => 
+        <ProductCard key={product.id} product={product}/>
+      )}
     </div>
   )
 }
