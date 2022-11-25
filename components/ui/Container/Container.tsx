@@ -1,8 +1,8 @@
-import { FC, PropsWithChildren} from 'react';
+import { FC, ReactNode, ComponentType, HTMLAttributes} from 'react';
 
 interface Props {
-    children: React.ReactNode | React.ReactNode[];
-    el?: any
+    children: ReactNode | ReactNode[];
+    el?: ComponentType<HTMLAttributes<HTMLElement>>
 }
 
 const Container: FC<Props> = ({children, el: Component = 'div'}) => {
