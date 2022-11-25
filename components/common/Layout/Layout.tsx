@@ -1,7 +1,7 @@
-import { PropsWithChildren } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import s from './Layout.module.css';
 // react 18 children no longer to FC, it belong to PropsWithChildren
-const Layout = ({ children }: PropsWithChildren) => {
+const Layout: FC<PropsWithChildren> = ({ children }) => {
     return (
         <div className={s.root}>
             <main
