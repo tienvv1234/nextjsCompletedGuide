@@ -44,3 +44,10 @@ tailwindcss is forcus on component
 postcss is tool for transforming css with javascript
 
 css --> postcss --> parse --> tailwindcss --> plug in2 --> plug in 3 --> stringify --> css
+
+### Understand _app
+- this the entry point for all the pages, and recieve 2 arguments are Component,
+    pageProps,
+component is pages
+pageProds is getStaticProps function or getInitialProps = async (appContext: AppProps) => {
+home page  = app + index 
