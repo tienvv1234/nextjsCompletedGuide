@@ -5,11 +5,13 @@ import { ElementType, FC, PropsWithChildren } from 'react';
 
 const Noop: FC<PropsWithChildren> = ({ children }) => <>{children}</>;
 
-MyApp.getInitialProps = async (appContext: AppProps) => {
-    return {
-        props: {},
-    };
-};
+// only _app can use getInitialProps (maybe not)
+// can't use getInitialProps in here, because it's not a page
+// MyApp.getInitialProps = async (appContext: AppProps) => {
+//     return {
+//         props: {},
+//     };
+// };
 // update type & { Layout: ElementType } to { Layout: ElementType } & PropsWithChildren
 // function MyApp({Component, pageProps}: AppProps & {Component: { Layout: ElementType } & PropsWithChildren}) {
 function MyApp({
