@@ -12,6 +12,7 @@ import {
 export const getStaticPaths: GetStaticPaths = async () => {
     const config = getConfig();
     const { products } = await getAllProductsPaths(config);
+    console.log('products111111111', products);
     const slugs = products.map((p) => ({ params: { slug: p.slug } }));
     return {
         paths: slugs,
@@ -24,8 +25,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps = async ({
     params,
 }: GetStaticPropsContext<{ slug: string }>) => {
+    console.log('params', params);
     const config = getConfig();
-    const { product } = await getProduct(config);
+    const { product } = await getProduct({config, variables: {slug: params?.slug}});
+
+
     return {
         props: {
             product,
@@ -38,8 +42,11 @@ export default function ProductSlug({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
     return (
         <div>
-            {product.name}
-            {product.slug}
+            {product?.name}
+            {product?.slug}
+            {product?.path}
+            {product?.price.value}
+            {product?.price.currencyCode}
         </div>
     );
 }
