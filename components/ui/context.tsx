@@ -1,4 +1,4 @@
-import { createContext, FC, PropsWithChildren, useContext, useReducer } from 'react';
+import { createContext, FC, PropsWithChildren, useContext, useMemo, useReducer } from 'react';
 
 // type
 export interface StateModifiers {
@@ -48,11 +48,26 @@ export const UIProvider: FC<PropsWithChildren> = ({children}) => {
     const openSidebar = () => dispatch({ type: 'OPEN_SIDEBAR' });
     const closeSidebar = () => dispatch({ type: 'CLOSE_SIDEBAR' });
 
-    const value = {
-        ...state,
-        openSidebar,
-        closeSidebar,
-    }
+    // this always create a new object, so the component using this context will always re-render
+    // we need to feed it with a memoized value
+
+    // const value = {
+    //     ...state,
+    //     openSidebar,
+    //     closeSidebar,
+    // }
+
+    // using useMemo
+    // this will only re-render when the state change
+    const value = useMemo(() => {
+        return {
+            ...state,
+            openSidebar,
+            closeSidebar,
+        }
+    }, [state.isSidebarOpen])
+
+
     return (
         <UIContext.Provider value={value}>
             {children}   

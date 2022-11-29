@@ -5,6 +5,7 @@ import s from './Navbar.module.css';
 import { Usernav } from '@components/common';
 
 const Navbar: FC = () => {
+    console.log('Re-rendering Navbar');
     return (
         <Container>
             <div className={s.root}>
