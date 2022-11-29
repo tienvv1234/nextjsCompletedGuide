@@ -1,5 +1,5 @@
 import type { InferGetStaticPropsType } from 'next';
-import getAllProduct from '@framework/product/get-all-product';
+import {getAllProducts} from '@framework/product/';
 import { getConfig } from '@framework/api/config';
 import { Layout } from '@components/common';
 import { ProductCard } from '@components/product';
@@ -7,7 +7,7 @@ import { Grid, Hero, Marquee } from '@components/ui';
 
 export async function getStaticProps() {
   const config = getConfig();
-  const products = await getAllProduct(config);
+  const products = await getAllProducts(config);
   return {
     props: {
       // Will be passed to the page component as props
