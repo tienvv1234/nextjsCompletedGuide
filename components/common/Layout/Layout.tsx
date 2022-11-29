@@ -8,7 +8,6 @@ import { useUI } from '@components/ui/context';
 // react 18 children no longer to FC, it belong to PropsWithChildren
 const Layout: FC<PropsWithChildren> = ({ children }) => {
     const { isSidebarOpen, closeSidebar } = useUI();
-    console.log(4444)
     return (
         <div className={s.root}>
             <Navbar />
