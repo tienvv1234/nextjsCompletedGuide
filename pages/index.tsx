@@ -1,4 +1,3 @@
-console.log(1)
 import type { InferGetStaticPropsType } from 'next';
 import getAllProduct from '@framework/product/get-all-product';
 import { getConfig } from '@framework/api/config';
@@ -7,10 +6,8 @@ import { ProductCard } from '@components/product';
 import { Grid, Hero, Marquee } from '@components/ui';
 
 export async function getStaticProps() {
-  console.log(1111)
   const config = getConfig();
   const products = await getAllProduct(config);
-  console.log('server');
   return {
     props: {
       // Will be passed to the page component as props
@@ -24,8 +21,6 @@ export async function getStaticProps() {
 export default function HomePage({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log('client');
-  console.log(2222)
   return (
     <>
       <Grid>
