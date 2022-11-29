@@ -1,5 +1,5 @@
-import "@assets/main.css";
-import { UIProvider } from "@components/ui/context";
+import '@assets/main.css';
+import { UIProvider } from '@components/ui/context';
 import { AppProps } from 'next/app';
 import { ElementType, FC, PropsWithChildren } from 'react';
 
