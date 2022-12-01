@@ -25,6 +25,7 @@ const ProductView: FC<Props> = ({ product }) => {
                     </div>
                     <ProductSlider>
                         { product.images.map((image) => 
+                            // we can defind keep slider here but we don't need it
                             <div key={image.url} className={s.imageContainer}>
                                 <Image
                                     className={s.img}
