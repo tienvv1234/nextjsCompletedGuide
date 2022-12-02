@@ -5,20 +5,15 @@ import { Container, Button } from '@components/ui';
 import Image from 'next/image';
 import { Product } from '@common/types/product';
 import { ProductSlider, Swatch } from '@components/product';
+import { Choices, getVariant } from '../helpers';
 
 interface Props {
     product: Product;
 }
 
-type AvailableOptions = 'size' | 'color' | string;
-
-type Choices = {
-    [P in AvailableOptions]: string;
-}
-
 const ProductView: FC<Props> = ({ product }) => {
     const [choices, setChoices] = useState<Choices>({});
-    console.log('choices', choices);
+    const variant = getVariant(product, choices);
     return (
         <Container>
             <div className={cn(s.root, 'fit', 'mb-5')}>
