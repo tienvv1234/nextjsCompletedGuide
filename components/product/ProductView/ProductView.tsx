@@ -1,16 +1,24 @@
 import cn from 'classnames';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import s from './ProductView.module.css';
 import { Container, Button } from '@components/ui';
 import Image from 'next/image';
 import { Product } from '@common/types/product';
-import { ProductSlider } from '@components/product';
+import { ProductSlider, Swatch } from '@components/product';
 
 interface Props {
     product: Product;
 }
 
+type AvailableOptions = 'size' | 'color' | string;
+
+type Choices = {
+    [P in AvailableOptions]: string;
+}
+
 const ProductView: FC<Props> = ({ product }) => {
+    const [choices, setChoices] = useState<Choices>({});
+    console.log('choices', choices);
     return (
         <Container>
             <div className={cn(s.root, 'fit', 'mb-5')}>
@@ -41,12 +49,33 @@ const ProductView: FC<Props> = ({ product }) => {
                 </div>
                 <div className={s.sidebar}>
                     <section>
-                        <div className='pb-4'>
-                            <h2 className='uppercase font-medium'>Color</h2>
-                            <div className='flex flex-row py-4'>
-                                Variant Options Here!
+                        {product.options.map((option) =>  {
+                            console.log(111);
+                            return (
+                                <div key={option.id} className='pb-4'>
+                                <h2 className='uppercase font-medium'>{option.displayName}</h2>
+                                <div className='flex flex-row py-4'>
+                                    { option.values.map((value) => {
+                                        const activeChoice = choices[option.displayName.toLowerCase()];
+                                        console.log('activeChoice', activeChoice)
+                                        return (   
+                                            <Swatch
+                                                key={`${option.id}-${value.label}`}
+                                                label={value.label}
+                                                color={value.hexColor}
+                                                variant={option.displayName}
+                                                active={value.label.toLowerCase() === activeChoice}
+                                                onClick={() => setChoices({
+                                                    ...choices,
+                                                    [option.displayName.toLowerCase()]: value.label.toLowerCase(),
+                                                })}
+                                            />
+                                        )}
+                                    )}
+                                </div>
                             </div>
-                        </div>
+                            )}
+                        )}
                         <div className='pb-14 break-words w-full max-w-xl text-lg'>
                             {product.description}
                         </div>
