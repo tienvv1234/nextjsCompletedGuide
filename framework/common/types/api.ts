@@ -3,8 +3,8 @@ export type ApiFetcherOptions = {
     query: string;
     variables?: Variables;
 }
-
 export type Variables = { [key: string]: string | undefined };
+export type ApiFetcher<T = any> = (options: ApiFetcherOptions) => Promise<ApiFetcherResults<T>>;
 
 export type ApiFetcherResults<T> = {
     data: T;
@@ -12,5 +12,17 @@ export type ApiFetcherResults<T> = {
 
 export interface ApiConfig {
     apiUrl: string;
-    fetch<T>(options: ApiFetcherOptions): Promise<ApiFetcherResults<T>>;
+    fetch: ApiFetcher;
+}
+
+export interface ApiHooks {
+    cart: {
+        useAddItem: any;
+    }
+}
+
+
+export interface ApiProviderContext {
+    hooks: ApiHooks;
+    fetcher: ApiFetcher;
 }

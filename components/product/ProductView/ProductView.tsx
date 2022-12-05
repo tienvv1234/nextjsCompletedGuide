@@ -7,6 +7,8 @@ import { Product } from '@common/types/product';
 import { ProductSlider, Swatch } from '@components/product';
 import { Choices, getVariant } from '../helpers';
 import { useUI } from '@components/ui/context';
+import useAddItem from '@framework/cart/use-add-item';
+import { useApiProvicer } from '@common';
 
 interface Props {
     product: Product;
@@ -14,9 +16,15 @@ interface Props {
 
 const ProductView: FC<Props> = ({ product }) => {
     const [choices, setChoices] = useState<Choices>({});
+    const { hooks, fetcher} = useApiProvicer();
+
     const variant = getVariant(product, choices);
     const { openSidebar } = useUI();
-    
+    const addItem = useAddItem();
+    // most important !!!
+    // useAddItem is entry point
+    console.log('addItem', addItem)
+    // this addItem function is from useAddItem hook
     const addToCart = () => {
         try {
             const item = {
@@ -24,7 +32,11 @@ const ProductView: FC<Props> = ({ product }) => {
                 variantId: variant?.id,
                 variantOptions: variant?.options,
             }
-
+            addItem(item);
+            alert(JSON.stringify(item))
+            // can write like this useAddItem()(item); but it's not recommended
+            // because it's hard to read and understand what's going on
+            // so we can use the addItem function from useAddItem hook
             openSidebar();
         } catch (error) {
             
@@ -61,14 +73,12 @@ const ProductView: FC<Props> = ({ product }) => {
                 <div className={s.sidebar}>
                     <section>
                         {product.options.map((option) =>  {
-                            console.log(111);
                             return (
                                 <div key={option.id} className='pb-4'>
                                 <h2 className='uppercase font-medium'>{option.displayName}</h2>
                                 <div className='flex flex-row py-4'>
                                     { option.values.map((value) => {
                                         const activeChoice = choices[option.displayName.toLowerCase()];
-                                        console.log('activeChoice', activeChoice)
                                         return (   
                                             <Swatch
                                                 key={`${option.id}-${value.label}`}
