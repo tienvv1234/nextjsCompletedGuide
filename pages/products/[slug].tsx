@@ -7,7 +7,7 @@ import {
     GetStaticPropsContext,
     InferGetStaticPropsType,
 } from 'next';
-
+// ssg
 // get all of the products slugs
 // params slug is the same as the file name
 export const getStaticPaths: GetStaticPaths = async () => {

@@ -51,3 +51,21 @@ css --> postcss --> parse --> tailwindcss --> plug in2 --> plug in 3 --> stringi
 component is pages
 pageProds is getStaticProps function or getInitialProps = async (appContext: AppProps) => {
 home page  = app + index 
+
+### SSG -- Static site generation
+
+npm run build, generate ra static file html css ... Reuse For each request (build time)
+many user quest to 1 file static
+
+### ssr
+
+each request is each html
+
+### ISR incremental site reder
+ssg + isr + cache(request)
+
+### Automatic static optimization'
+
+this determination is  made by the absence of getServerSideProps and getInitialProps in the page
+
+if page don;t actually use getServerSideProps then next js is automatic static optimization

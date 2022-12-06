@@ -1,13 +1,12 @@
-import { useHook } from '@common/utils/use-hook'
+import { useHook, useMutationHook } from '@common/utils/use-hook'
 const useAddItem = () => {
     // useHook callback function
     const hook = useHook((hooks) => {
         return hooks.cart.useAddItem
     });
-    //hook = {fetch, useHook}
-    return hook.useHook({
-        fetch: hook.fetcher
-    });
+    //hook = {fetch, useHook} handler: MutationHook
+    console.log('mutation', useMutationHook)
+    return useMutationHook({...hook});
 }
 
 export default useAddItem;
