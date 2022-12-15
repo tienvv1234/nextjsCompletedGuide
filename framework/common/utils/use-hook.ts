@@ -1,7 +1,7 @@
-import { ApiFetcher, ApiHooks } from '@common/types/api';
-import { FetcherHookCentext, MutationHook } from '@common/types/hook';
-import { useApiProvider } from '@framework';
-
+import { ApiHooks } from '@common/types/api';
+import { MutationHook } from '@common/types/hooks';
+// import { useApiProvider } from '@framework';
+import { useApiProvider } from "@common";
 export const useHook = (fn: (apiHooks: ApiHooks) => MutationHook) => {
     const { hooks } = useApiProvider();
     // hooke 
@@ -12,19 +12,15 @@ export const useHook = (fn: (apiHooks: ApiHooks) => MutationHook) => {
 }
 
 export const useMutationHook = (hook: MutationHook) => {
+    const { fetcher } = useApiProvider();
+
     const result = hook.useHook({
-        fetch: (input123:any) => {
-            console.log('input', input123)
+        fetch: (input:any) => {
             return hook.fetcher({
-                input123,
-                fetch: async (input123: any) => {
-                    return {
-                        data: JSON.stringify(input123) + "_MODIFIED"
-                    };
-                }
+                input,
+                fetch: fetcher
             });
         }
     });
-    console.log('use mutation', result)
     return result;
 }

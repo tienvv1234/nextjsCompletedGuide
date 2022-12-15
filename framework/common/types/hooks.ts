@@ -1,11 +1,11 @@
-import { ApiFetcher } from "./api"
+import { ApiFetcher } from './api'
 
 export type MutationHookContext = {
     fetch: (input: any) => any
 }
 
 export type FetcherHookCentext = {
-    input123: any,
+    input: any,
     fetch: ApiFetcher
 }
 

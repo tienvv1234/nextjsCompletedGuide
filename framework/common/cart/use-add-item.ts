@@ -5,7 +5,6 @@ const useAddItem = () => {
         return hooks.cart.useAddItem
     });
     //hook = {fetch, useHook} handler: MutationHook
-    console.log('mutation', useMutationHook)
     return useMutationHook({...hook});
 }
 

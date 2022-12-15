@@ -8,7 +8,7 @@ import { ProductSlider, Swatch } from '@components/product';
 import { Choices, getVariant } from '../helpers';
 import { useUI } from '@components/ui/context';
 import useAddItem from '@framework/cart/use-add-item';
-import { useApiProvicer } from '@common';
+
 
 interface Props {
     product: Product;
@@ -16,30 +16,28 @@ interface Props {
 
 const ProductView: FC<Props> = ({ product }) => {
     const [choices, setChoices] = useState<Choices>({});
-    const { hooks, fetcher} = useApiProvicer();
 
     const variant = getVariant(product, choices);
     const { openSidebar } = useUI();
     const addItem = useAddItem();
     // most important !!!
     // useAddItem is entry point
-    console.log('addItem', addItem)
     // this addItem function is from useAddItem hook
-    const addToCart = () => {
+    const addToCart = async () => {
         try {
             const item = {
                 productId: String(product.id),
                 variantId: variant?.id,
                 variantOptions: variant?.options,
             }
-            addItem(item);
-            alert(JSON.stringify(item))
+            const output = await addItem(item);
+            alert(JSON.stringify(output))
             // can write like this useAddItem()(item); but it's not recommended
             // because it's hard to read and understand what's going on
             // so we can use the addItem function from useAddItem hook
             openSidebar();
         } catch (error) {
-            
+            console.log('error', error)
         }
     };
     return (

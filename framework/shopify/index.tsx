@@ -1,6 +1,9 @@
 import { ReactNode } from 'react';
 import { getConfig } from './api/config';
-import { ApiProvider as CoreApiProvider, useApiProvicer as useCoreApiProvider } from '@common';
+import { 
+    ApiProvider as CoreApiProvider, 
+    useApiProvider as useCoreApiProvider 
+} from '@common';
 import { shopifyHooks } from './hooks';
 const config = getConfig()
 
