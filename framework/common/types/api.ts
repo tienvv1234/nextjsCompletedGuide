@@ -2,7 +2,7 @@ export type ApiFetcherOptions = {
     query: string;
     variables?: Variables;
 }
-export type Variables = { [key: string]: string | undefined };
+export type Variables = { [key: string]: string | undefined | any };
 export type ApiFetcher<T = any> = (options: ApiFetcherOptions) => Promise<ApiFetcherResults<T>>;
 
 export type ApiFetcherResults<T> = {
@@ -16,6 +16,7 @@ export interface ApiConfig {
 export interface ApiHooks {
     cart: {
         useAddItem: any;
+        useCart: any;
     }
 }
 
